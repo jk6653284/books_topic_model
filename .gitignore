@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+books_topic_model/
+_build/
+notebooks/
+setup
+conf.py
+index.rst
+.coverage
+*.pyc
+setup_mac.sh
