@@ -9,3 +9,10 @@ index.rst
 .coverage
 *.pyc
 setup_mac.sh
+
+# input and output data
+*input_data
+*output_*
+
+# driver logs
+*geckodriver*
