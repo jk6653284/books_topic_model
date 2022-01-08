@@ -1,16 +1,15 @@
 """
-Script to retrieve book ids from list of books from goodreads export file
+Script to retrieve book ids from list of books from goodreads export file. 
+The output file can be used as input for `get_books.py` and `get_reviews.py`.
 
 Input: 
     goodreads library export csv file. 
-    export link https://www.goodreads.com/review/import
+    link to export my books from goodreads: https://www.goodreads.com/review/import
 Output:
     txt file with list of book urls.
     For older books, this is the format of the original scraper style ('id.Book_Title')
     For newer books, sometimes the format is different ('id-book-title')
 """
-
-
 
 
 # imports
@@ -27,6 +26,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 def setup_driver(headless=True):
     """
+    Setup firefox driver for selenium
     """
     geckodriver_autoinstaller.install()
     fireFoxOptions = webdriver.FirefoxOptions()
@@ -51,15 +51,15 @@ def extract_book_isbn(file_name:str,shelf:str='read') -> list:
     return books_df.ISBN13.values.tolist()
 
 def scroll_shim(passed_in_driver, object):
-        x = object.location['x']
-        y = object.location['y']
-        scroll_by_coord = 'window.scrollTo(%s,%s);' % (
-            x,
-            y
-        )
-        scroll_nav_out_of_way = 'window.scrollBy(0, -120);'
-        passed_in_driver.execute_script(scroll_by_coord)
-        passed_in_driver.execute_script(scroll_nav_out_of_way)
+    x = object.location['x']
+    y = object.location['y']
+    scroll_by_coord = 'window.scrollTo(%s,%s);' % (
+        x,
+        y
+    )
+    scroll_nav_out_of_way = 'window.scrollBy(0, -120);'
+    passed_in_driver.execute_script(scroll_by_coord)
+    passed_in_driver.execute_script(scroll_nav_out_of_way)
 
 def open_url_from_isbn(driver,isbn:str,browser_url:str) -> None:
     """
@@ -129,4 +129,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-
