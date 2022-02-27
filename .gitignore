@@ -12,7 +12,11 @@ setup_mac.sh
 
 # input and output data
 *input_data
+input_topicmodel
 *output_*
 
 # driver logs
 *geckodriver*
+
+# log files
+logs/
